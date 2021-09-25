@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function submit(uname, email, password, phone, setName, setEmail, setPassword, setPhone)
+function submit(uname, email, password, phone, setName, setEmail, setPassword, setPhone, setInvalidEmail,setSuccessful )
 {
   
   const userData = {name: uname, email: email, password: password, phone: phone}
@@ -10,11 +10,16 @@ function submit(uname, email, password, phone, setName, setEmail, setPassword, s
   
   if(database[email] == null)
   { 
-  database[email] = userData}
+  database[email] = userData
+   setInvalidEmail(false);
+   setSuccessful(true);
+}
 
   else 
   {
   console.log("Already exists")
+  setInvalidEmail(true);
+   setSuccessful(false);
   }
  
   
@@ -35,10 +40,14 @@ function Register() {
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const database = JSON.parse(localStorage.getItem("Users"));
+  const [invalidEmail, setInvalidEmail] = useState(false);
+  const [successful, setSuccessful] = useState(false);
 
 
 
   return (
+
+    
     <div className="Register">
       <div class="container">
         <div class="row align-items-center my-5">
@@ -46,6 +55,14 @@ function Register() {
             
           </div>
           <div class="col-lg-5">
+          
+          <div>
+            {invalidEmail? <p>lready Exists</p> :<></> }
+
+            {successful? <p>Registration Successful</p> :<></> }
+          
+            </div>
+
             <h1 class="font-weight-light"><center><b>Register</b></center></h1>
             <div className="form-group">
                     <label>Name</label>
@@ -68,8 +85,11 @@ function Register() {
                     <input type="Phone" className="form-control" placeholder="Enter contact no" value={phone} onInput={e => setPhone(e.target.value)} />
                 </div>
 
-                <button type="submit" onClick={()=>submit(uname, email, password, phone, setName, setEmail, setPassword, setPhone)} className="btn btn-dark btn-lg btn-block">Register</button>
+                <button type="submit" onClick={()=>submit(uname, email, password, phone, setName, setEmail, setPassword, setPhone, setInvalidEmail,setSuccessful)} className="btn btn-dark btn-lg btn-block">Register</button>
+          
+               
           </div>
+
         </div>
       </div>
     </div>
