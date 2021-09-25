@@ -6,11 +6,11 @@ function Register() {
     <div className="Register">
       <div class="container">
         <div class="row align-items-center my-5">
-          <div class="col-lg-7">
+          <div class="col-lg-3">
             
           </div>
           <div class="col-lg-5">
-            <h1 class="font-weight-light">Register</h1>
+            <h1 class="font-weight-light"><center><b>Register</b></center></h1>
             <div className="form-group">
                     <label>Name</label>
                     <input type="text" className="form-control" placeholder="Enter Full Name" name="name"  />
