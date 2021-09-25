@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Dashboard() {
+  const [isLoggedIn, SetLoginState] = useState(false)
+
+if(isLoggedIn) {
+
+  return (
+    
+        <div class="row align-items-center my-5">
+          <div class="col-lg-3"></div>
+            <div class="col-lg-5">
+               <center><h1>Registered Users</h1></center> 
+            </div>
+         
+         </div>
+
+  )
+  
+}
+else {
   return (
     <div className="Dashboard">
       <div class="container">
@@ -20,13 +38,14 @@ function Dashboard() {
                     <input type="password" className="form-control" placeholder="Enter password"/>
                 </div>
 
-                <button type="submit" className="btn btn-dark btn-lg btn-block">Login</button>
+                <button type="submit" onClick={()=>SetLoginState(true)} className="btn btn-dark btn-lg btn-block">Login</button>
             
           </div>
         </div>
       </div>
     </div>
-  );
+   );
+ }
 }
 
 export default Dashboard;
