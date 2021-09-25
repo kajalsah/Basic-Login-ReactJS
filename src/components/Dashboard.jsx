@@ -31,12 +31,12 @@ else {
             <h1 class="font-weight-light"><center><b>Admin Login</b></center></h1>
             <div className="form-group">
                     <label>Username</label>
-                    <input type="text" className="form-control" placeholder="Enter username" value={username} onInput={e => setUsername(e.target.vale)} />
+                    <input type="text" className="form-control" placeholder="Enter username" value={username} onInput={e => setUsername(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" value={password} onInput={e => setPassword(e.target.vale)}/>
+                    <input type="password" className="form-control" placeholder="Enter password" value={password} onInput={e => setPassword(e.target.value)}/>
                 </div>
 
                 <button type="submit" onClick={()=>check(setUsername,setPassword,SetLoginState)} className="btn btn-dark btn-lg btn-block">Login</button>

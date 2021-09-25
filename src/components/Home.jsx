@@ -5,6 +5,12 @@ function Home() {
 
   const [isLoggedIn, SetLoginState] = useState(false)
 
+  if(localStorage.getItem("Users") == null) 
+  { 
+    const user = {};
+    localStorage.setItem("Users", JSON.stringify(user))
+  }
+
 if(isLoggedIn) {
 
   return (
