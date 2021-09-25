@@ -2,9 +2,11 @@ import React, { useState } from "react";
 
 
 function Home() {
+  const [email, setEmail] = useState(" ");
+  const [password, setPassword] = useState(" ");
+  const [isLoggedIn, SetLoginState] = useState(false);
 
-  const [isLoggedIn, SetLoginState] = useState(false)
-
+  
   if(localStorage.getItem("Users") == null) 
   { 
     const user = {};
@@ -42,18 +44,18 @@ if(isLoggedIn) {
 
                 <div className="form-group">
                     <label>Email</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <input type="email" className="form-control" placeholder="Enter email" value={email} onInput={e => setEmail(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password"/>
+                    <input type="password" className="form-control" placeholder="Enter password" value={password} onInput={e => setPassword(e.target.value)}/>
                 </div>
 
-                <button type="submit" onClick={()=>SetLoginState(true)} className="btn btn-dark btn-lg btn-block">Login</button>
+                <button type="submit" onClick={()=>checklog(email, password,setEmail, setPassword, SetLoginState)} className="btn btn-dark btn-lg btn-block">Login</button>
                 <div>
                 
-                    <b>Does not have an account?</b> <a href="#"  >Register</a> <b>here!</b>
+                    <b>Does not have an account?</b> <a href="./Register"  >Register</a> <b>here!</b>
                 
                  </div>
           </div>
@@ -63,6 +65,32 @@ if(isLoggedIn) {
   );
 
   }
-}
+  function checklog(email, password, setEmail, setPassword, SetLoginState)
+  {
+    const database = JSON.parse(localStorage.getItem("Users"))
 
+if(database[email] != null) {
+  
+
+       if (database[email].email == email && database[email].password == password) {
+               SetLoginState(true)
+       }
+       else {
+         console.log("invalid credentials_1");  
+        }
+     }
+     else {
+
+      console.log("Invalid credentials_2") }
+
+
+      localStorage.setItem("Users", JSON.stringify(database))
+    
+     setEmail('');
+     setPassword('');
+     
+
+  } 
+
+}
 export default Home;

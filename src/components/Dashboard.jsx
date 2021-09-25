@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 
+
 function Dashboard() {
   const [isLoggedIn, SetLoginState] = useState(false) ;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const database = JSON.parse(localStorage.getItem("Users"));
 
 if(isLoggedIn) {
 
@@ -12,7 +15,19 @@ if(isLoggedIn) {
         <div class="row align-items-center my-5">
           <div class="col-lg-3"></div>
             <div class="col-lg-5">
-               <center><h1>Registered Users</h1></center> 
+               <center><h1>Registered Users</h1> 
+               <table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+  </tr>
+  {Object.entries(database).map(([key, val], i) => (
+                <>
+                <tr><td>{val.name}</td><td>{val.email}</td><td>{val.phone}</td></tr>
+                </>
+              ))}
+</table></center>
             </div>
          </div>
 

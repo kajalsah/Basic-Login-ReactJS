@@ -34,6 +34,9 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
+  const database = JSON.parse(localStorage.getItem("Users"));
+
+
 
   return (
     <div className="Register">
