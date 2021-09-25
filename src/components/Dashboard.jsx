@@ -39,7 +39,7 @@ else {
                     <input type="password" className="form-control" placeholder="Enter password" value={password} onInput={e => setPassword(e.target.vale)}/>
                 </div>
 
-                <button type="submit" onClick={()=>SetLoginState(true)} className="btn btn-dark btn-lg btn-block">Login</button>
+                <button type="submit" onClick={()=>check(setUsername,setPassword,SetLoginState)} className="btn btn-dark btn-lg btn-block">Login</button>
             
           </div>
         </div>
@@ -47,7 +47,13 @@ else {
     </div>
    );
  }
-
+ function check(setUsername,setPassword,SetLoginState)
+  {
+    if(username == "admin" && password == "admin")
+    {
+      SetLoginState(true)  
+    }
+  }
 
 }
 
