@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 
 function Home() {
-  const [email, setEmail] = useState(" ");
-  const [password, setPassword] = useState(" ");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoggedIn, SetLoginState] = useState(false);
   const [invalid, SetInvalid] = useState(false);
 
@@ -12,6 +12,16 @@ function Home() {
   { 
     const user = {};
     localStorage.setItem("Users", JSON.stringify(user))
+  }
+
+  if(localStorage.getItem("CurrentUser") == null)
+  {
+    localStorage.setItem("CurrentUser", "");
+  }
+
+  if(!isLoggedIn && localStorage.getItem("CurrentUser") !== "")
+  {
+    SetLoginState(true);
   }
 
 if(isLoggedIn) {
@@ -23,7 +33,7 @@ if(isLoggedIn) {
             <div class="col-lg-5">
                <center><h1>WELCOME</h1></center> 
             </div>
-          <button type="logOut" onClick={()=>SetLoginState(false)} >LogOut </button>
+          <button type="logOut" onClick={()=>logout(SetLoginState)} >LogOut </button>
          </div>
 
   )
@@ -81,6 +91,7 @@ if(database[email] != null) {
        if (database[email].email == email && database[email].password == password) {
                SetLoginState(true)
                SetInvalid(false);
+               localStorage.setItem("CurrentUser", database[email].name);
        }
        else {
         SetInvalid(true);
@@ -97,9 +108,13 @@ if(database[email] != null) {
      setEmail('');
      setPassword('');
      
-     
+     } 
 
-  } 
+  function logout(SetLoginState)
+  {
+    localStorage.setItem("CurrentUser", "");
+    SetLoginState(false);
+  }
 
 }
 export default Home;
