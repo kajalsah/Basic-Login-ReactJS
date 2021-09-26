@@ -57,7 +57,7 @@ function Register() {
           <div class="col-lg-5">
           
           <div>
-            {invalidEmail? <p>lready Exists</p> :<></> }
+            {invalidEmail? <p>Already Exists</p> :<></> }
 
             {successful? <p>Registration Successful</p> :<></> }
           
